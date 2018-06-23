@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: managed-controller-configmap
+  namespace: kube-system
+data:
+  config: |
+    artifactRepository: {}
+    executorImage: jbrette/kubextexec:latest

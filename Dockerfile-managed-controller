@@ -1,0 +1,5 @@
+FROM debian:9.4
+
+COPY dist/managed-controller /bin/
+
+ENTRYPOINT [ "/bin/managed-controller" ]

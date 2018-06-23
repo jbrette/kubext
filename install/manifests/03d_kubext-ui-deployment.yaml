@@ -1,0 +1,30 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: kubext-ui
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: kubext-ui
+  template:
+    metadata:
+      labels:
+        app: kubext-ui
+    spec:
+      serviceAccountName: kubext-ui
+      containers:
+      - name: kubext-ui
+        image: jbrette/kubextui:latest
+        env:
+        - name: ARGO_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: IN_CLUSTER
+          value: "true"
+        - name: ENABLE_WEB_CONSOLE
+          value: "false"
+        - name: BASE_HREF
+          value: /

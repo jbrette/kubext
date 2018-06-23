@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: managed-controller
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: managed-controller
+  template:
+    metadata:
+      labels:
+        app: managed-controller
+    spec:
+      serviceAccountName: kubext
+      containers:
+      - name: managed-controller
+        image: jbrette/managed-controller:latest
+        command:
+        - managed-controller
+        args:
+        - --configmap
+        - managed-controller-configmap
+        env:
+        - name: ARGO_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
