@@ -233,7 +233,7 @@ func (woc *wfOperationCtx) persistUpdates() {
 	if !woc.updated {
 		return
 	}
-	wfClient := woc.controller.wfclientset.ArgoprojV1alpha1().Manageds(woc.wf.ObjectMeta.Namespace)
+	wfClient := woc.controller.wfclientset.KubextprojV1alpha1().Manageds(woc.wf.ObjectMeta.Namespace)
 	_, err := wfClient.Update(woc.wf)
 	if err != nil {
 		woc.log.Warnf("Error updating managed: %v", err)

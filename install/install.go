@@ -74,15 +74,15 @@ func NewInstaller(config *rest.Config, opts InstallOptions) (*Installer, error) 
 	return &inst, nil
 }
 
-// Install installs the Argo controller and UI in the given Namespace
+// Install installs the Kubext controller and UI in the given Namespace
 func (i *Installer) Install() {
 	if !i.DryRun {
-		fmt.Printf("Installing Argo %s into namespace '%s'\n", kubext.GetVersion(), i.Namespace)
+		fmt.Printf("Installing Kubext %s into namespace '%s'\n", kubext.GetVersion(), i.Namespace)
 		kubernetesVersionCheck(i.clientset)
 	}
 	i.InstallManagedCRD()
 	i.InstallManagedController()
-	i.InstallArgoUI()
+	i.InstallKubextUI()
 }
 
 func kubernetesVersionCheck(clientset *kubernetes.Clientset) {
@@ -166,7 +166,7 @@ func (i *Installer) InstallManagedController() {
 	i.MustInstallResource(kube.MustToUnstructured(&managedControllerDeployment))
 }
 
-func (i *Installer) InstallArgoUI() {
+func (i *Installer) InstallKubextUI() {
 	var kubextUIServiceAccount apiv1.ServiceAccount
 	var kubextUIClusterRole rbacv1.ClusterRole
 	var kubextUIClusterRoleBinding rbacv1.ClusterRoleBinding

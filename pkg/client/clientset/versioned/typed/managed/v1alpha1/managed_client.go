@@ -7,22 +7,22 @@ import (
 	rest "k8s.io/client-go/rest"
 )
 
-type ArgoprojV1alpha1Interface interface {
+type KubextprojV1alpha1Interface interface {
 	RESTClient() rest.Interface
 	ManagedsGetter
 }
 
-// ArgoprojV1alpha1Client is used to interact with features provided by the jbrette.io group.
-type ArgoprojV1alpha1Client struct {
+// KubextprojV1alpha1Client is used to interact with features provided by the jbrette.io group.
+type KubextprojV1alpha1Client struct {
 	restClient rest.Interface
 }
 
-func (c *ArgoprojV1alpha1Client) Manageds(namespace string) ManagedInterface {
+func (c *KubextprojV1alpha1Client) Manageds(namespace string) ManagedInterface {
 	return newManageds(c, namespace)
 }
 
-// NewForConfig creates a new ArgoprojV1alpha1Client for the given config.
-func NewForConfig(c *rest.Config) (*ArgoprojV1alpha1Client, error) {
+// NewForConfig creates a new KubextprojV1alpha1Client for the given config.
+func NewForConfig(c *rest.Config) (*KubextprojV1alpha1Client, error) {
 	config := *c
 	if err := setConfigDefaults(&config); err != nil {
 		return nil, err
@@ -31,12 +31,12 @@ func NewForConfig(c *rest.Config) (*ArgoprojV1alpha1Client, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &ArgoprojV1alpha1Client{client}, nil
+	return &KubextprojV1alpha1Client{client}, nil
 }
 
-// NewForConfigOrDie creates a new ArgoprojV1alpha1Client for the given config and
+// NewForConfigOrDie creates a new KubextprojV1alpha1Client for the given config and
 // panics if there is an error in the config.
-func NewForConfigOrDie(c *rest.Config) *ArgoprojV1alpha1Client {
+func NewForConfigOrDie(c *rest.Config) *KubextprojV1alpha1Client {
 	client, err := NewForConfig(c)
 	if err != nil {
 		panic(err)
@@ -44,9 +44,9 @@ func NewForConfigOrDie(c *rest.Config) *ArgoprojV1alpha1Client {
 	return client
 }
 
-// New creates a new ArgoprojV1alpha1Client for the given RESTClient.
-func New(c rest.Interface) *ArgoprojV1alpha1Client {
-	return &ArgoprojV1alpha1Client{c}
+// New creates a new KubextprojV1alpha1Client for the given RESTClient.
+func New(c rest.Interface) *KubextprojV1alpha1Client {
+	return &KubextprojV1alpha1Client{c}
 }
 
 func setConfigDefaults(config *rest.Config) error {
@@ -64,7 +64,7 @@ func setConfigDefaults(config *rest.Config) error {
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
-func (c *ArgoprojV1alpha1Client) RESTClient() rest.Interface {
+func (c *KubextprojV1alpha1Client) RESTClient() rest.Interface {
 	if c == nil {
 		return nil
 	}

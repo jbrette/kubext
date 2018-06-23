@@ -3,21 +3,21 @@ package commands
 import rbacv1 "k8s.io/api/rbac/v1"
 
 const (
-	// Argo controller resource constants
-	ArgoControllerServiceAccount     = "kubext"
-	ArgoControllerClusterRole        = "kubext-cluster-role"
-	ArgoControllerClusterRoleBinding = "kubext-binding"
+	// Kubext controller resource constants
+	KubextControllerServiceAccount     = "kubext"
+	KubextControllerClusterRole        = "kubext-cluster-role"
+	KubextControllerClusterRoleBinding = "kubext-binding"
 
-	// Argo UI resource constants
-	ArgoUIServiceAccount     = "kubext-ui"
-	ArgoUIClusterRole        = "kubext-ui-cluster-role"
-	ArgoUIClusterRoleBinding = "kubext-ui-binding"
-	ArgoUIDeploymentName     = "kubext-ui"
-	ArgoUIServiceName        = "kubext-ui"
+	// Kubext UI resource constants
+	KubextUIServiceAccount     = "kubext-ui"
+	KubextUIClusterRole        = "kubext-ui-cluster-role"
+	KubextUIClusterRoleBinding = "kubext-ui-binding"
+	KubextUIDeploymentName     = "kubext-ui"
+	KubextUIServiceName        = "kubext-ui"
 )
 
 var (
-	ArgoControllerPolicyRules = []rbacv1.PolicyRule{
+	KubextControllerPolicyRules = []rbacv1.PolicyRule{
 		{
 			APIGroups: []string{""},
 			// TODO(jesse): remove exec privileges when issue #499 is resolved
@@ -41,7 +41,7 @@ var (
 		},
 	}
 
-	ArgoUIPolicyRules = []rbacv1.PolicyRule{
+	KubextUIPolicyRules = []rbacv1.PolicyRule{
 		{
 			APIGroups: []string{""},
 			Resources: []string{"pods", "pods/exec", "pods/log"},

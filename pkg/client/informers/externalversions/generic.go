@@ -38,7 +38,7 @@ func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource
 	switch resource {
 	// Group=jbrette.io, Version=v1alpha1
 	case v1alpha1.SchemeGroupVersion.WithResource("manageds"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Argoproj().V1alpha1().Manageds().Informer()}, nil
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Kubextproj().V1alpha1().Manageds().Informer()}, nil
 
 	}
 

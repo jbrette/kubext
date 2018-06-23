@@ -45,13 +45,13 @@ func NewFilteredManagedInformer(client versioned.Interface, namespace string, re
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.ArgoprojV1alpha1().Manageds(namespace).List(options)
+				return client.KubextprojV1alpha1().Manageds(namespace).List(options)
 			},
 			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.ArgoprojV1alpha1().Manageds(namespace).Watch(options)
+				return client.KubextprojV1alpha1().Manageds(namespace).Watch(options)
 			},
 		},
 		&managed_v1alpha1.Managed{},

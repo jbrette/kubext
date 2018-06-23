@@ -17,7 +17,7 @@ const (
 func NewCommand() *cobra.Command {
 	var command = &cobra.Command{
 		Use:   CLIName,
-		Short: "kubext is the command line interface to Argo",
+		Short: "kubext is the command line interface to Kubext",
 		Run: func(cmd *cobra.Command, args []string) {
 			cmd.HelpFunc()(cmd, args)
 		},

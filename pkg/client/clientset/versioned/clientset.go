@@ -10,26 +10,26 @@ import (
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
-	ArgoprojV1alpha1() jbrettev1alpha1.ArgoprojV1alpha1Interface
+	KubextprojV1alpha1() jbrettev1alpha1.KubextprojV1alpha1Interface
 	// Deprecated: please explicitly pick a version if possible.
-	Argoproj() jbrettev1alpha1.ArgoprojV1alpha1Interface
+	Kubextproj() jbrettev1alpha1.KubextprojV1alpha1Interface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
 // version included in a Clientset.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	jbretteV1alpha1 *jbrettev1alpha1.ArgoprojV1alpha1Client
+	jbretteV1alpha1 *jbrettev1alpha1.KubextprojV1alpha1Client
 }
 
-// ArgoprojV1alpha1 retrieves the ArgoprojV1alpha1Client
-func (c *Clientset) ArgoprojV1alpha1() jbrettev1alpha1.ArgoprojV1alpha1Interface {
+// KubextprojV1alpha1 retrieves the KubextprojV1alpha1Client
+func (c *Clientset) KubextprojV1alpha1() jbrettev1alpha1.KubextprojV1alpha1Interface {
 	return c.jbretteV1alpha1
 }
 
-// Deprecated: Argoproj retrieves the default version of ArgoprojClient.
+// Deprecated: Kubextproj retrieves the default version of KubextprojClient.
 // Please explicitly pick a version.
-func (c *Clientset) Argoproj() jbrettev1alpha1.ArgoprojV1alpha1Interface {
+func (c *Clientset) Kubextproj() jbrettev1alpha1.KubextprojV1alpha1Interface {
 	return c.jbretteV1alpha1
 }
 

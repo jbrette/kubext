@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Argo",
+    "title": "Kubext",
     "version": "v2.1.0"
   },
   "paths": {},

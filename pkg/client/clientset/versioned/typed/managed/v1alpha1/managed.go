@@ -35,7 +35,7 @@ type manageds struct {
 }
 
 // newManageds returns a Manageds
-func newManageds(c *ArgoprojV1alpha1Client, namespace string) *manageds {
+func newManageds(c *KubextprojV1alpha1Client, namespace string) *manageds {
 	return &manageds{
 		client: c.RESTClient(),
 		ns:     namespace,

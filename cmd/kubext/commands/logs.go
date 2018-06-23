@@ -183,7 +183,7 @@ func (p *logPrinter) printRecentManagedLogs(wf *v1alpha1.Managed) map[string]*ti
 func (p *logPrinter) setupManagedInformer(namespace string, name string, callback func(wf *v1alpha1.Managed, done bool)) cache.SharedIndexInformer {
 	wfcClientset := wfclientset.NewForConfigOrDie(restConfig)
 	wfInformerFactory := wfinformers.NewFilteredSharedInformerFactory(wfcClientset, 20*time.Minute, namespace, nil)
-	informer := wfInformerFactory.Argoproj().V1alpha1().Manageds().Informer()
+	informer := wfInformerFactory.Kubextproj().V1alpha1().Manageds().Informer()
 	informer.AddEventHandler(
 		cache.ResourceEventHandlerFuncs{
 			UpdateFunc: func(old, new interface{}) {

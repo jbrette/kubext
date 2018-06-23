@@ -44,12 +44,12 @@ func (c *Clientset) Discovery() discovery.DiscoveryInterface {
 
 var _ clientset.Interface = &Clientset{}
 
-// ArgoprojV1alpha1 retrieves the ArgoprojV1alpha1Client
-func (c *Clientset) ArgoprojV1alpha1() jbrettev1alpha1.ArgoprojV1alpha1Interface {
-	return &fakejbrettev1alpha1.FakeArgoprojV1alpha1{Fake: &c.Fake}
+// KubextprojV1alpha1 retrieves the KubextprojV1alpha1Client
+func (c *Clientset) KubextprojV1alpha1() jbrettev1alpha1.KubextprojV1alpha1Interface {
+	return &fakejbrettev1alpha1.FakeKubextprojV1alpha1{Fake: &c.Fake}
 }
 
-// Argoproj retrieves the ArgoprojV1alpha1Client
-func (c *Clientset) Argoproj() jbrettev1alpha1.ArgoprojV1alpha1Interface {
-	return &fakejbrettev1alpha1.FakeArgoprojV1alpha1{Fake: &c.Fake}
+// Kubextproj retrieves the KubextprojV1alpha1Client
+func (c *Clientset) Kubextproj() jbrettev1alpha1.KubextprojV1alpha1Interface {
+	return &fakejbrettev1alpha1.FakeKubextprojV1alpha1{Fake: &c.Fake}
 }

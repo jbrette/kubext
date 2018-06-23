@@ -35,7 +35,7 @@ func main() {
 			Paths:       &spec.Paths{Paths: map[string]spec.PathItem{}},
 			Info: &spec.Info{
 				InfoProps: spec.InfoProps{
-					Title:   "Argo",
+					Title:   "Kubext",
 					Version: version,
 				},
 			},

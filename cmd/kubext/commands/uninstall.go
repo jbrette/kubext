@@ -25,14 +25,14 @@ func NewUninstallCommand() *cobra.Command {
 	)
 	var command = &cobra.Command{
 		Use:   "uninstall",
-		Short: "uninstall Argo",
+		Short: "uninstall Kubext",
 		Run: func(cmd *cobra.Command, args []string) {
 			uninstallArgs.namespace = InstallNamespace()
 			uninstall(&uninstallArgs)
 		},
 	}
 	command.Flags().StringVar(&uninstallArgs.controllerName, "controller-name", common.DefaultControllerDeploymentName, "name of controller deployment")
-	command.Flags().StringVar(&uninstallArgs.uiName, "ui-name", ArgoUIDeploymentName, "name of ui deployment")
+	command.Flags().StringVar(&uninstallArgs.uiName, "ui-name", KubextUIDeploymentName, "name of ui deployment")
 	command.Flags().StringVar(&uninstallArgs.configMap, "configmap", common.DefaultConfigMapName(common.DefaultControllerDeploymentName), "name of configmap to uninstall")
 	return command
 }
@@ -42,14 +42,14 @@ func uninstall(uninstallArgs *uninstallFlags) {
 	fmt.Printf("Uninstalling from namespace '%s'\n", uninstallArgs.namespace)
 	// Delete the UI service
 	svcClient := clientset.CoreV1().Services(uninstallArgs.namespace)
-	err := svcClient.Delete(ArgoUIServiceName, &metav1.DeleteOptions{})
+	err := svcClient.Delete(KubextUIServiceName, &metav1.DeleteOptions{})
 	if err != nil {
 		if !apierr.IsNotFound(err) {
-			log.Fatalf("Failed to delete service '%s': %v", ArgoUIServiceName, err)
+			log.Fatalf("Failed to delete service '%s': %v", KubextUIServiceName, err)
 		}
-		fmt.Printf("Service '%s' in namespace '%s' not found\n", ArgoUIServiceName, uninstallArgs.namespace)
+		fmt.Printf("Service '%s' in namespace '%s' not found\n", KubextUIServiceName, uninstallArgs.namespace)
 	} else {
-		fmt.Printf("Service '%s' deleted\n", ArgoUIServiceName)
+		fmt.Printf("Service '%s' deleted\n", KubextUIServiceName)
 	}
 
 	// Delete the UI and managed-controller deployment
@@ -80,7 +80,7 @@ func uninstall(uninstallArgs *uninstallFlags) {
 	}
 
 	// Delete controller and UI role binding
-	for _, bindingName := range []string{ArgoControllerClusterRoleBinding, ArgoUIClusterRoleBinding} {
+	for _, bindingName := range []string{KubextControllerClusterRoleBinding, KubextUIClusterRoleBinding} {
 		if err := clientset.RbacV1().ClusterRoleBindings().Delete(bindingName, &metav1.DeleteOptions{}); err != nil {
 			if !apierr.IsNotFound(err) {
 				log.Fatalf("Failed to delete ClusterRoleBinding: %v\n", err)
@@ -92,7 +92,7 @@ func uninstall(uninstallArgs *uninstallFlags) {
 	}
 
 	// Delete controller and UI the cluster role
-	for _, roleName := range []string{ArgoControllerClusterRole, ArgoUIClusterRole} {
+	for _, roleName := range []string{KubextControllerClusterRole, KubextUIClusterRole} {
 		if err := clientset.RbacV1().ClusterRoles().Delete(roleName, &metav1.DeleteOptions{}); err != nil {
 			if !apierr.IsNotFound(err) {
 				log.Fatalf("Failed to delete ClusterRole: %v\n", err)
@@ -104,7 +104,7 @@ func uninstall(uninstallArgs *uninstallFlags) {
 	}
 
 	// Delete controller and UI service account
-	for _, serviceAccount := range []string{ArgoControllerServiceAccount, ArgoUIServiceAccount} {
+	for _, serviceAccount := range []string{KubextControllerServiceAccount, KubextUIServiceAccount} {
 		if err := clientset.CoreV1().ServiceAccounts(uninstallArgs.namespace).Delete(serviceAccount, &metav1.DeleteOptions{}); err != nil {
 			if !apierr.IsNotFound(err) {
 				log.Fatalf("Failed to delete ServiceAccount: %v\n", err)

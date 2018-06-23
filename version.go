@@ -15,7 +15,7 @@ var (
 	gitTreeState = ""                     // determined from `git status --porcelain`. either 'clean' or 'dirty'
 )
 
-// Version contains Argo version information
+// Version contains Kubext version information
 type Version struct {
 	Version      string
 	BuildDate    string

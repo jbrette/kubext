@@ -12,7 +12,7 @@ import (
 
 // FakeManageds implements ManagedInterface
 type FakeManageds struct {
-	Fake *FakeArgoprojV1alpha1
+	Fake *FakeKubextprojV1alpha1
 	ns   string
 }
 

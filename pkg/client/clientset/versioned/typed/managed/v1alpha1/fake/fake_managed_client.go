@@ -6,17 +6,17 @@ import (
 	testing "k8s.io/client-go/testing"
 )
 
-type FakeArgoprojV1alpha1 struct {
+type FakeKubextprojV1alpha1 struct {
 	*testing.Fake
 }
 
-func (c *FakeArgoprojV1alpha1) Manageds(namespace string) v1alpha1.ManagedInterface {
+func (c *FakeKubextprojV1alpha1) Manageds(namespace string) v1alpha1.ManagedInterface {
 	return &FakeManageds{c, namespace}
 }
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
-func (c *FakeArgoprojV1alpha1) RESTClient() rest.Interface {
+func (c *FakeKubextprojV1alpha1) RESTClient() rest.Interface {
 	var ret *rest.RESTClient
 	return ret
 }

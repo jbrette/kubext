@@ -25,7 +25,7 @@ func NewInstallCommand() *cobra.Command {
 	)
 	var command = &cobra.Command{
 		Use:   "install",
-		Short: "install Argo",
+		Short: "install Kubext",
 		Run: func(cmd *cobra.Command, args []string) {
 			_ = initKubeClient()
 
@@ -47,7 +47,7 @@ func NewInstallCommand() *cobra.Command {
 	command.Flags().StringVar(&installArgs.UIImage, "ui-image", DefaultUiImage, "use a specified ui image")
 	command.Flags().StringVar(&installArgs.UIBaseHref, "ui-base-href", "/", "UI base url")
 	command.Flags().StringVar(&installArgs.UIServiceAccount, "ui-service-account", "", "use a specified service account for the kubext-ui deployment")
-	command.Flags().BoolVar(&installArgs.EnableWebConsole, "enable-web-console", false, "allows exec access into running step container using Argo UI")
+	command.Flags().BoolVar(&installArgs.EnableWebConsole, "enable-web-console", false, "allows exec access into running step container using Kubext UI")
 	command.Flags().StringVar(&installArgs.ImagePullPolicy, "image-pull-policy", "", "imagePullPolicy to use for deployments")
 	return command
 }

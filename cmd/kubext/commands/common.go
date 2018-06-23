@@ -97,7 +97,7 @@ func InitManagedClient(ns ...string) v1alpha1.ManagedInterface {
 		}
 	}
 	wfcs := wfclientset.NewForConfigOrDie(restConfig)
-	wfClient = wfcs.ArgoprojV1alpha1().Manageds(namespace)
+	wfClient = wfcs.KubextprojV1alpha1().Manageds(namespace)
 	return wfClient
 }
 

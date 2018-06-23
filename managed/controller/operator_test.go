@@ -24,7 +24,7 @@ func TestOperateManagedPanicRecover(t *testing.T) {
 	// intentionally set clientset to nil to induce panic
 	controller.kubeclientset = nil
 	wf := unmarshalWF(helloWorldWf)
-	_, err := controller.wfclientset.ArgoprojV1alpha1().Manageds("").Create(wf)
+	_, err := controller.wfclientset.KubextprojV1alpha1().Manageds("").Create(wf)
 	assert.Nil(t, err)
 	woc := newManagedOperationCtx(wf, controller)
 	woc.operate()
@@ -72,7 +72,7 @@ spec:
 // TestSidecarWithVolume verifies ia sidecar can have a volumeMount reference to both existing or volumeClaimTemplate volumes
 func TestSidecarWithVolume(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 	wf := unmarshalWF(sidecarWithVol)
 	wf, err := wfcset.Create(wf)
 	assert.Nil(t, err)
@@ -212,7 +212,7 @@ spec:
 // TestManagedParallelismLimit verifies parallelism at a managed level is honored.
 func TestManagedParallelismLimit(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 	wf := unmarshalWF(managedParallelismLimit)
 	wf, err := wfcset.Create(wf)
 	assert.Nil(t, err)
@@ -270,7 +270,7 @@ spec:
 // TestStepsTemplateParallelismLimit verifies parallelism at a steps level is honored.
 func TestStepsTemplateParallelismLimit(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 	wf := unmarshalWF(stepsTemplateParallelismLimit)
 	wf, err := wfcset.Create(wf)
 	assert.Nil(t, err)
@@ -326,7 +326,7 @@ spec:
 // TestDAGTemplateParallelismLimit verifies parallelism at a dag level is honored.
 func TestDAGTemplateParallelismLimit(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 	wf := unmarshalWF(dagTemplateParallelismLimit)
 	wf, err := wfcset.Create(wf)
 	assert.Nil(t, err)
@@ -419,7 +419,7 @@ spec:
 
 func TestNestedTemplateParallelismLimit(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 	wf := unmarshalWF(nestedParallelism)
 	wf, err := wfcset.Create(wf)
 	assert.Nil(t, err)
@@ -446,7 +446,7 @@ func TestSidecarResourceLimits(t *testing.T) {
 		},
 	}
 	wf := unmarshalWF(helloWorldWf)
-	_, err := controller.wfclientset.ArgoprojV1alpha1().Manageds("").Create(wf)
+	_, err := controller.wfclientset.KubextprojV1alpha1().Manageds("").Create(wf)
 	assert.Nil(t, err)
 	woc := newManagedOperationCtx(wf, controller)
 	woc.operate()
@@ -467,7 +467,7 @@ func TestSidecarResourceLimits(t *testing.T) {
 // TestSuspendResume tests the suspend and resume feature
 func TestSuspendResume(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 	wf := unmarshalWF(stepsTemplateParallelismLimit)
 	wf, err := wfcset.Create(wf)
 	assert.Nil(t, err)
@@ -534,7 +534,7 @@ spec:
 
 func TestExpandWithItems(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 
 	// Test list expansion
 	wf := unmarshalWF(expandWithItems)
@@ -583,7 +583,7 @@ spec:
 
 func TestExpandWithItemsMap(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 
 	wf := unmarshalWF(expandWithItemsMap)
 	wf, err := wfcset.Create(wf)
@@ -621,7 +621,7 @@ spec:
 
 func TestSuspendTemplate(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 
 	// operate the managed. it should become in a suspended state after
 	wf := unmarshalWF(suspendTemplate)
@@ -690,7 +690,7 @@ spec:
 // Tests ability to reference managed parameters from within top level spec fields (e.g. spec.volumes)
 func TestManagedSpecParam(t *testing.T) {
 	controller := newController()
-	wfcset := controller.wfclientset.ArgoprojV1alpha1().Manageds("")
+	wfcset := controller.wfclientset.KubextprojV1alpha1().Manageds("")
 
 	wf := unmarshalWF(volumeWithParam)
 	wf, err := wfcset.Create(wf)
@@ -795,7 +795,7 @@ func TestParamSubstitutionWithArtifact(t *testing.T) {
 	wf := test.GetManaged("functional/param-sub-with-artifacts.yaml")
 	woc := newWoc(*wf)
 	woc.operate()
-	wf, err := woc.controller.wfclientset.ArgoprojV1alpha1().Manageds("").Get(wf.ObjectMeta.Name, metav1.GetOptions{})
+	wf, err := woc.controller.wfclientset.KubextprojV1alpha1().Manageds("").Get(wf.ObjectMeta.Name, metav1.GetOptions{})
 	assert.Nil(t, err)
 	assert.Equal(t, wf.Status.Phase, wfv1.NodeRunning)
 	pods, err := woc.controller.kubeclientset.CoreV1().Pods("").List(metav1.ListOptions{})
@@ -807,7 +807,7 @@ func TestGlobalParamSubstitutionWithArtifact(t *testing.T) {
 	wf := test.GetManaged("functional/global-param-sub-with-artifacts.yaml")
 	woc := newWoc(*wf)
 	woc.operate()
-	wf, err := woc.controller.wfclientset.ArgoprojV1alpha1().Manageds("").Get(wf.ObjectMeta.Name, metav1.GetOptions{})
+	wf, err := woc.controller.wfclientset.KubextprojV1alpha1().Manageds("").Get(wf.ObjectMeta.Name, metav1.GetOptions{})
 	assert.Nil(t, err)
 	assert.Equal(t, wf.Status.Phase, wfv1.NodeRunning)
 	pods, err := woc.controller.kubeclientset.CoreV1().Pods("").List(metav1.ListOptions{})

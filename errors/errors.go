@@ -18,9 +18,9 @@ const (
 	CodeInternal     = "ERR_INTERNAL"
 )
 
-// ArgoError is an error interface that additionally adds support for
+// KubextError is an error interface that additionally adds support for
 // stack trace, error code, and a JSON representation of the error
-type ArgoError interface {
+type KubextError interface {
 	Error() string
 	Code() string
 	Message() string
@@ -29,7 +29,7 @@ type ArgoError interface {
 	Format(s fmt.State, verb rune)
 }
 
-// kubexterr is the internal implementation of an Argo error which wraps the error from pkg/errors
+// kubexterr is the internal implementation of an Kubext error which wraps the error from pkg/errors
 type kubexterr struct {
 	code    string
 	message string

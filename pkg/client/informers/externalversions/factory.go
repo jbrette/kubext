@@ -107,9 +107,9 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
-	Argoproj() managed.Interface
+	Kubextproj() managed.Interface
 }
 
-func (f *sharedInformerFactory) Argoproj() managed.Interface {
+func (f *sharedInformerFactory) Kubextproj() managed.Interface {
 	return managed.New(f, f.namespace, f.tweakListOptions)
 }

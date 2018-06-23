@@ -28,7 +28,7 @@ func newWoc(wfs ...wfv1.Managed) *wfOperationCtx {
 		wf = &wfs[0]
 	}
 	fakeController := newController()
-	_, err := fakeController.wfclientset.ArgoprojV1alpha1().Manageds(wf.ObjectMeta.Namespace).Create(wf)
+	_, err := fakeController.wfclientset.KubextprojV1alpha1().Manageds(wf.ObjectMeta.Namespace).Create(wf)
 	if err != nil {
 		panic(err)
 	}
