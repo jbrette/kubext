@@ -5,8 +5,8 @@ import (
 	"strconv"
 
 	"github.com/jbrette/kubext"
-	"github.com/jbrette/kubext-cd/util/diff"
-	"github.com/jbrette/kubext-cd/util/kube"
+	"github.com/jbrette/kubext/util/diff"
+	"github.com/jbrette/kubext/util/kube"
 	"github.com/jbrette/kubext/errors"
 	"github.com/jbrette/kubext/managed/common"
 	"github.com/jbrette/kubext/managed/controller"

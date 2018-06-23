@@ -70,24 +70,6 @@ cli-linux: builder
 		LDFLAGS='-extldflags "-static"' \
 		ARGO_CLI_NAME=kubext-linux-amd64
 
-.PHONY: cli-darwin
-cli-darwin: builder
-	${BUILDER_CMD} make cli \
-		GOOS=darwin \
-		IMAGE_TAG=$(IMAGE_TAG) \
-		IMAGE_NAMESPACE=$(IMAGE_NAMESPACE) \
-		ARGO_CLI_NAME=kubext-darwin-amd64
-
-.PHONY: cli-windows
-cli-windows: builder
-	${BUILDER_CMD} make cli \
-                GOARCH=amd64 \
-		GOOS=windows \
-		IMAGE_TAG=$(IMAGE_TAG) \
-		IMAGE_NAMESPACE=$(IMAGE_NAMESPACE) \
-		LDFLAGS='-extldflags "-static"' \
-		ARGO_CLI_NAME=kubext-windows-amd64
-
 .PHONY: controller
 controller:
 	go build -v -i -ldflags '${LDFLAGS}' -o ${DIST_DIR}/managed-controller ./cmd/managed-controller
@@ -122,10 +104,6 @@ executor-image: executor-linux
 .PHONY: lint
 lint:
 	gometalinter --config gometalinter.json ./...
-
-.PHONY: test
-test:
-	go test ./...
 
 .PHONY: update-codegen
 update-codegen:

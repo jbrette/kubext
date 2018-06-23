@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jbrette/kubext-cd/errors"
+	"github.com/jbrette/kubext/errors"
 	"github.com/jbrette/kubext/pkg/apis/managed/v1alpha1"
 	wfclientset "github.com/jbrette/kubext/pkg/client/clientset/versioned"
 	wfinformers "github.com/jbrette/kubext/pkg/client/informers/externalversions"
